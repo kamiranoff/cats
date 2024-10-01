@@ -2,10 +2,7 @@ import { CAT_API_BASE_HEADERS, CAT_API_V1_BASE_URL } from "@/api/Api";
 import { useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
 import { queryClient } from "@/app/ReactQueryClient";
-import {
-  GET_VOTES_BY_SUB_ID_QUERY_KEY,
-  GetVotesResponse,
-} from "@/features/Cats/useGetVotes";
+import { GET_VOTES_BY_SUB_ID_QUERY_KEY } from "@/features/Cats/useGetVotes";
 import colors from "tailwindcss/colors";
 import { useCustomToast } from "@/hooks/useCustomToast";
 

@@ -9,6 +9,7 @@ import colors from "tailwindcss/colors";
 import { useDeleteFavourite } from "@/features/Cats/useDeleteFavourite";
 import { useVoteCat } from "@/features/Cats/useVoteCat";
 import { Text } from "@/components/ui/text";
+import { ButtonSpinner } from "@/components/ui/button";
 
 type Props = {
   item: Cat;
@@ -16,7 +17,7 @@ type Props = {
 
 export const CatListItem = ({ item }: Props) => {
   const { handleDeleteFavourite } = useDeleteFavourite();
-  const { handleVoteCat } = useVoteCat();
+  const { handleVoteCat, isPending } = useVoteCat();
   const { handleToggleFavourite } = useToggleFavourite({
     imageId: item.id,
     subId: item.subId,
@@ -55,7 +56,7 @@ export const CatListItem = ({ item }: Props) => {
           name={item.favouriteId ? "star" : "star-outline"}
           size={28}
           style={{
-            color: item.favouriteId ? colors.yellow[500] : colors.gray[900],
+            color: colors.yellow[500],
           }}
           onPress={handlePresToggleFavourite}
         />
@@ -80,24 +81,35 @@ export const CatListItem = ({ item }: Props) => {
           backgroundColor: "rgba(255,255,255,0.8)",
         }}
       >
-        <MaterialCommunityIcons
-          name="thumb-up"
-          size={28}
-          onPress={handVoteUp}
-        />
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "bold",
-          }}
-        >
-          {item.vote}
-        </Text>
-        <MaterialCommunityIcons
-          name="thumb-down"
-          size={28}
-          onPress={handleVoteDown}
-        />
+        {!isPending ? (
+          <>
+            <MaterialCommunityIcons
+              name="thumb-up"
+              size={28}
+              onPress={handVoteUp}
+            />
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              {item.vote}
+            </Text>
+            <MaterialCommunityIcons
+              name="thumb-down"
+              size={28}
+              onPress={handleVoteDown}
+            />
+          </>
+        ) : (
+          <ButtonSpinner
+            color={colors.gray[400]}
+            style={{
+              padding: 4,
+            }}
+          />
+        )}
       </HStack>
     </Box>
   );

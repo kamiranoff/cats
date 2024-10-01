@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
-import { FlatList, ListRenderItem, View } from "react-native";
+import { FlatList, ListRenderItem, StyleSheet } from "react-native";
 import { Cat, useGetCats } from "@/features/Cats/useGetCats";
 import { CatListItem } from "@/features/Cats/CatListItem";
+import { CatAnimation } from "@/components/ui/catAnimation/CatAnimation";
 
 type Props = {};
 
@@ -19,21 +20,26 @@ export const CatList = ({}: Props) => {
 
   return (
     <FlatList
-      style={{
-        flex: 1,
-      }}
+      style={styles.container}
       data={cats}
       refreshing={isPending}
       contentContainerClassName="flex flex-1"
-      contentContainerStyle={{
-        flexGrow: 1,
-        gap: 8,
-      }}
+      contentContainerStyle={styles.contentContainer}
       numColumns={1}
-      ListEmptyComponent={() => <View />}
+      ListEmptyComponent={CatAnimation}
       renderItem={renderItem}
       onEndReached={handleEndReached}
       keyExtractor={(item) => item.id}
     />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    gap: 8,
+  },
+});

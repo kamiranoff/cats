@@ -1,6 +1,6 @@
-import {CAT_API_BASE_HEADERS, CAT_API_V1_BASE_URL} from "@/api/Api";
-import {useQuery} from "@tanstack/react-query";
-import {useMemo} from "react";
+import { CAT_API_BASE_HEADERS, CAT_API_V1_BASE_URL } from "@/api/Api";
+import { useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 
 export type GetVotesResponse = {
   id: number;
@@ -21,7 +21,7 @@ type Vote = {
 };
 
 async function getVotes(): Promise<GetVotesResponse> {
-  const response = await fetch(`${CAT_API_V1_BASE_URL}/votes`, {
+  const response = await fetch(`${CAT_API_V1_BASE_URL}/votes?limit=200`, {
     headers: CAT_API_BASE_HEADERS,
   });
   return response.json();
