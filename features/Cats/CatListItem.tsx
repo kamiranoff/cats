@@ -71,6 +71,7 @@ export const CatListItem = ({ item }: Props) => {
       />
       <HStack
         style={{
+          alignItems: "center",
           justifyContent: "space-evenly",
           padding: 8,
           position: "absolute",
@@ -84,7 +85,14 @@ export const CatListItem = ({ item }: Props) => {
           size={28}
           onPress={handVoteUp}
         />
-        <Text>{item.vote}</Text>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+          }}
+        >
+          {item.vote}
+        </Text>
         <MaterialCommunityIcons
           name="thumb-down"
           size={28}

@@ -6,6 +6,7 @@ import { CatList } from "@/features/Cats/CatList";
 export default function HomeScreen() {
   return (
     <ThemedContainer
+      edges={["top"]}
       style={{
         flex: 1,
       }}
